@@ -69,7 +69,15 @@ backend rails_app_servers_ssl
   server <%= backend['name'] %> <%= backend['ip'] %>:443 weight <%= backend['backends'] || 10 %> maxconn <%= backend['backends'] * node[:haproxy][:maxcon_factor_rails_app_ssl] %> check inter <%= node[:haproxy][:check_interval] %>
   <% end -%>
 <% end -%>
-  
+
+backend liferay_servers
+   option httpchk OPTIONS /
+   option forwardfor
+   option http-server-close
+   appsession JSESSIONID len 52 timeout 3h
+   server alpha 10.0.16.183:8081 check inter 5000
+   server omega 10.0.16.183:8082 check inter 5000
+   
 <% if !node[:haproxy][:php_backends].empty? -%>  
 backend php_app_servers
   balance <%= node[:haproxy][:balance] %>
