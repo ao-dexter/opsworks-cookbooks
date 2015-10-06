@@ -48,7 +48,7 @@ backend liferay_servers
   server omega 10.0.16.183:8082 check inter 5000
 
   
-<% if !node[:haproxy][:portallayer_backends].empty? -%>
+<% if !node[:haproxy][:portal_backends].empty? -%>
 backend portal_app_servers
   option redispatch
   option forwardfor
