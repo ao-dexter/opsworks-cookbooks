@@ -46,14 +46,8 @@ backend liferay_servers
   appsession JSESSIONID len 52 timeout 3h
   server alpha 10.0.16.183:8081 check inter 5000
   server omega 10.0.16.183:8082 check inter 5000
-  #break
-  
-<% if !node[:haproxy][:custom_backends].empty? -%>
-backend custom_app_servers
-  option redispatch
-  option forwardfor
-<% end -%>
 
+  
 <% if !node[:haproxy][:portallayer_backends].empty? -%>
 backend portal_app_servers
   option redispatch
