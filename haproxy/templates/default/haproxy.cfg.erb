@@ -47,7 +47,7 @@ backend liferay_servers
   server alpha 10.0.16.183:8081 check inter 5000
   server omega 10.0.16.183:8082 check inter 5000
   <% node[:haproxy][:portal].each do |backend| -%>
-  server gamma <%= backend.private_ip %>
+  server gamma <%= backend['private_ip'] %>
   <% end -%>
 
 
