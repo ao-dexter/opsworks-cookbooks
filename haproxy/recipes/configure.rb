@@ -5,7 +5,7 @@ end
 
 template "/etc/haproxy/haproxy.cfg" do
   cookbook "haproxy"
-  source "haproxy.cfg.erb"
+  source "haproxycustom.cfg.erb"
   owner "root"
   group "root"
   mode 0644
