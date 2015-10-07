@@ -44,7 +44,6 @@ backend portal_servers
   option forwardfor
   option http-server-close
   appsession JSESSIONID len 52 timeout 3h
-  <%= node[:haproxy][:portalip] %>
   server alpha <%= node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"] %>
 
 
