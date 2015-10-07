@@ -46,7 +46,7 @@ backend liferay_servers
   appsession JSESSIONID len 52 timeout 3h
   server alpha 10.0.16.183:8081 check inter 5000
   server omega 10.0.16.183:8082 check inter 5000
-  server gamma <%= node[:haproxy][:portal].first['ip'] %>
+  server gamma <%= node["opsworks"]["layers"]["portal"]["instances"]["stockton"]["private_ip"] %>
 
 
 # Set up application listeners here.
