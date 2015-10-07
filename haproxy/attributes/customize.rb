@@ -10,5 +10,3 @@
 #
 #normal[:haproxy][:stats_url] = '/haproxy?stats'
 #normal[:haproxy][:stats_user] = 'opsworks'
-
-normal[:haproxy][:portalip] = "#{node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"]}"
