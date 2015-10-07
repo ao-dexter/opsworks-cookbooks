@@ -39,15 +39,20 @@ defaults
   stats uri <%= node[:haproxy][:stats_url] %>
   <% end -%>
   
-backend portal_servers
+listen application 0.0.0.0:80
+  # configure a fake backend as long as there are no real ones
+  # this way HAProxy will not fail on a config check
+  balance roundrobin
+  server localhost 127.0.0.1:8080 weight 1 maxconn 5 check
+  
+frontend http-in
+  bind :80
+  default_backend portal
+  
+backend portal
   option httpchk OPTIONS /
   option forwardfor
   option http-server-close
   appsession JSESSIONID len 52 timeout 3h
   server alpha <%= node["opsworks"]["layers"]["portal"]["instances"]["stockton"]["private_ip"] %>:8081 check inter 5000
   server omega <%= node["opsworks"]["layers"]["portal"]["instances"]["stockton"]["private_ip"] %>:8082 check inter 5000
-
-
-frontend http-in
-  bind :80
-  default_backend portal_servers
