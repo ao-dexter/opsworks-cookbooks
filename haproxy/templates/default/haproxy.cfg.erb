@@ -46,9 +46,8 @@ backend liferay_servers
   appsession JSESSIONID len 52 timeout 3h
   server alpha 10.0.16.183:8081 check inter 5000
   server omega 10.0.16.183:8082 check inter 5000
-  <% node["opsworks"]["layers"]["portal"]["instances"].each do |instance| -%>
-  server gamma <%= instance["ip"] %>
-  <% end -%>
+  server gamma <%= <%= node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"] %>
+
 
 
 # Set up application listeners here.
