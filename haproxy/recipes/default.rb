@@ -32,7 +32,7 @@ end
 include_recipe 'haproxy::service'
 
 template '/etc/haproxy/haproxy.cfg' do
-  source 'haproxy.cfg.erb'
+  source 'haproxycustom.cfg.erb'
   owner 'root'
   group 'root'
   mode 0644
