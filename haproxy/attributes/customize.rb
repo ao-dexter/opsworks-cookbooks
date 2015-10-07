@@ -11,4 +11,4 @@
 #normal[:haproxy][:stats_url] = '/haproxy?stats'
 #normal[:haproxy][:stats_user] = 'opsworks'
 
-default[:haproxy][:portal] = node[:opsworks][:layers][:portal][:instances]
+normal[:haproxy][:portalip] = "#{node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"]}"
