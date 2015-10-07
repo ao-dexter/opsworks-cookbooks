@@ -44,10 +44,8 @@ backend portal_servers
   option forwardfor
   option http-server-close
   appsession JSESSIONID len 52 timeout 3h
-  <% if node[:opsworks][:layers].has_key?("portal") && !node[:opsworks][:layers]['portal']['instances'].empty? -%>
   server alpha <%= node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"] %>:8081 check inter 5000
   server omega <%= node["opsworks"]["layers"]["portal"]["instances"].first["private_ip"] %>:8082 check inter 5000
-  <% end -%>
 
 frontend http-in
   bind :80
